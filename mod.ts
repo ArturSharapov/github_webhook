@@ -66,6 +66,9 @@ export const webhook = (secret?: string): ReturnType<typeof webhookBuilder> => {
   return webhookBuilder([], secret);
 };
 
+/**
+ * A chainable object for defining github webhook handlers
+ */
 export type WebhookBuilder = {
   /**
    * Define a github webhook event handler that can be either sync or async.\
