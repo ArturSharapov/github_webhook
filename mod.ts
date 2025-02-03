@@ -62,7 +62,7 @@ const server = (port: number, pathname: string, handlers: Handler[], secret: str
  * Handle GitHub Webhooks with Deno HTTP Web Server or a custom HTTP server with
  * built-in cryptographic timing-safe validation
  */
-export const webhook = (secret?: string): ReturnType<typeof webhookBuilder> => {
+export const webhook = (secret?: string): WebhookBuilder => {
   return webhookBuilder([], secret);
 };
 

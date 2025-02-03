@@ -1,6 +1,6 @@
 {
   "name": "@dino/github-webhook",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Handle GitHub Webhooks with Deno.serve or a custom HTTP server; with built-in cryptographic timing-safe validation provided",
   "exports": "./mod.ts",
   "imports": {
