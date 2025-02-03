@@ -66,18 +66,12 @@ export const webhook = (secret?: string): ReturnType<typeof webhookBuilder> => {
   return webhookBuilder([], secret);
 };
 
-/**
- * Internal utility function used to build webhook handlers object
- */
-const webhookBuilder = (
-  handlers: Handler[],
-  secret: string | undefined,
-): {
+export type WebhookBuilder = {
   /**
    * Define a github webhook event handler that can be either sync or async.\
    * If a Response object is returned, all subsequent handlers will not be called.
    */
-  on<E extends WebhookEventName>(event: Handler<E>['event'], handler: Handler<E>['handler']): any;
+  on<E extends WebhookEventName>(event: Handler<E>['event'], handler: Handler<E>['handler']): WebhookBuilder;
   /**
    * Create a Deno HTTP Web Server and start listening for github webhooks on
    * the specified port and pathname (if there is such).
@@ -88,7 +82,15 @@ const webhookBuilder = (
    * Used to integrate github webhooks handling with an existing HTTP server.
    */
   handle(request: Request): Promise<Response | undefined>;
-} => ({
+};
+
+/**
+ * Internal utility function used to build webhook handlers object
+ */
+const webhookBuilder = (
+  handlers: Handler[],
+  secret: string | undefined,
+): WebhookBuilder => ({
   on(event, handler) {
     return webhookBuilder([...handlers, { event, handler } as Handler], secret);
   },
