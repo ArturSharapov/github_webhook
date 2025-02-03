@@ -1,6 +1,13 @@
 {
+  "name": "@dino/github-webhook",
+  "version": "0.0.1",
+  "description": "Handle GitHub Webhooks with Deno.serve or a custom HTTP server; with built-in cryptographic timing-safe validation provided",
+  "exports": "./mod.ts",
+  "imports": {
+    "@frytg/crypto/hmac": "jsr:@frytg/crypto@0.1.0/hmac",
+    "@std/crypto@1.0.4/timing-safe-equal": "jsr:@std/crypto@1.0.4/timing-safe-equal"
+  },
   "compilerOptions": {
-    "allowJs": false,
     "strict": true
   },
   "lint": {
